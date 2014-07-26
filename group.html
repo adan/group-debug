@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>群测试工具</title>
+<link rel="stylesheet" type="text/css" href="static/common.css" />
+<script type="text/javascript" src="static/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="static/jquery.selection.js"></script>
+<script type="text/javascript" src="static/common.js"></script>
+<script type="text/javascript" src="static/group.js"></script>
+</head>
+
+<body>
+<div id="error_message" title="单击关闭提示信息" onclick="hideMessage();"><span>&nbsp;</span></div>
+<fieldset>
+  <legend>群</legend>
+  <form id="group" method="post" onsubmit="return false;">
+    <div class="cform">
+      <label for="id">群号：</label>
+      <input type="text" name="id" value="" class="txt" />
+    </div>
+    <div class="cform">
+      <label for="name">名称：</label>
+      <input type="text" name="name" value="" size="80" class="txt" />
+    </div>
+    <div class="cform">
+      <label for="members">成员：</label>
+      <textarea name="members" cols="80" rows="3"></textarea>
+      <span>英文逗号或换行分隔</span>
+    </div>
+    <div class="cform">
+      <label for="onoff">push/通讯录：</label>
+      <input type="radio" name="onoff" value="1" checked="checked" />开
+      <input type="radio" name="onoff" value="0" />关
+    </div>
+    <div class="cform">
+      <label for="message">消息：</label>
+      <textarea name="message" cols="80" rows="2"></textarea>
+    </div>
+    <div class="cform" style="margin-bottom: 10px">
+      <label for="submit">&nbsp;</label>
+      <input type="button" name="create" value="创建" class="btn f" onclick="groupCreate();" />
+      <input type="button" name="add" value="加人" class="btn" onclick="groupAdd();" />
+      <input type="button" name="remove" value="踢人" class="btn" onclick="groupRemove();" />
+      <input type="button" name="change_name" value="改名" class="btn" onclick="groupChangeName();" />
+      <input type="button" name="exit" value="退出" class="btn" onclick="groupExit();" />
+      <input type="button" name="message" value="发消息" class="btn" onclick="groupMessage();" />
+      <input type="button" name="delete_message" value="删消息" class="btn" onclick="groupDeleteMessage();" />
+      <input type="button" name="push" value="push" class="btn" onclick="groupPush();" />
+      <input type="button" name="save" value="保存到通讯录" class="btn" onclick="groupSave();" />
+      <input type="button" name="profile" value="资料" class="btn" onclick="groupProfile();" />
+      <input type="button" name="settings" value="设置" class="btn" onclick="groupSettings();" />
+      <input type="button" name="get_members" value="成员" class="btn" onclick="groupMembers();" />
+      <input type="button" name="messages" value="历史消息" class="btn" onclick="groupMessages();" />
+      <input type="button" name="joined" value="加入的群" class="btn" onclick="groupJoined();" />
+      <input type="reset" name="reset" value="清空" class="btn" />
+    </div>
+    <div class="cform">
+      <label for="gdid">GDID: </label>
+      <input type="text" name="gdid" value="" size="80" class="txt" />
+      <span>填写GDID/GSID/Access token可改变操作者身份</span>
+    </div>
+    <div class="cform">
+      <label for="gsid">GSID: </label>
+      <input type="text" name="gsid" value="" size="80" class="txt" />
+    </div>
+    <div class="cform">
+      <label for="token">Access token: </label>
+      <input type="text" name="token" value="" size="80" class="txt" />
+    </div>
+    <div class="cform">
+      <label for="note">便签：</label>
+      <textarea name="note" cols="80" rows="3"></textarea>
+      <span>此处内容不提交服务器，用于临时存储</span>
+    </div>
+  </form>
+</fieldset>
+<div id="result_wrapper" style="visibility: hidden">
+  <span>服务器返回结果：</span>
+  <pre id="result" style="margin-top: 0"></pre>
+</div>
+</body>
+</html>

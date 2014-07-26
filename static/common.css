@@ -1,0 +1,229 @@
+/* All rights reserved. */
+body {
+	font-family: "Lucida Grande", Verdana, Lucida, Arial, Helvetica, "宋体", sans-serif;
+	margin: 0;
+	padding: 10px;
+}
+h1 {
+	font-size: 14px;
+	color: #00f;
+}
+img, table {
+	border: 0;
+}
+table {
+	margin: auto;
+	text-align: center;
+}
+input.txt, textarea, select {
+	padding: 1px 2px;
+	border: 1px solid #84a1bd;
+}
+input.txt:focus, textarea:focus, select:focus {
+	background: #f0f0fc;
+}
+input.btn {
+	height: 22px;
+	line-height: 18px;
+	margin-left: 3px;
+	padding-bottom: 2px;
+}
+input.f { /* button first */
+	margin-left: 0px;
+}
+input.ro, textarea.ro {
+	background: #eee;
+}
+td {
+	padding: .1em .5em;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+ul.sub_menu {
+	padding: 2px 0;
+	background: #fff;
+}
+ul.sub_menu li { padding: 1px 5px; }
+ul.sub_menu li.current { background: #c3d9ff; }
+ul.sub_menu li, div.menu_top {
+	cursor: pointer;
+}
+ul.sub_menu li.nolink {
+	cursor: default;
+}
+a {
+	color: #00f;
+	text-decoration: none;
+}
+a:hover {
+	color: purple;
+	text-decoration: underline;
+}
+div#wrapper {
+	min-width: 760px;
+}
+span#username, span#stime {
+	float: right;
+	margin: 1ex 1em 1ex 0;
+}
+span#stime, div#bstime {
+	font-weight: bold;
+}
+div#banner {
+	clear: both;
+	height: 30px;
+}
+div#loading {
+	position: absolute;
+	top: 1ex;
+	right: 1em;
+	padding: 2px;
+	background: #f33;
+	color: #fff;
+	z-index: 3;
+	visibility: hidden;
+}
+div#menu {
+	margin: 0 10px;
+	padding: 0;
+	width: 120px;
+	float: left;
+}
+div.sub_menu {
+	margin: 10px 0;
+}
+div.r1, div.r2, div.r3, div.r4 { overflow: hidden; background: #c3d9ff; }
+div.r1 { margin: 0 5px; height: 1px; }
+div.r2 { margin: 0 3px; height: 1px; }
+div.r3 { margin: 0 2px; height: 1px; }
+div.r4 { margin: 0 1px; height: 2px; }
+div#outer_content {
+	margin: 0 0 0 140px;
+	padding: 1px; /* 如果为 0 则其内元素 margin 有问题 */
+}
+div#result_wrapper {
+	font-size: 12px;
+}
+div#copyright {
+	margin-top: 1em;
+	clear: both;
+	text-align: center;
+}
+div#message, div#error_message {
+	margin: 0 200px;
+	text-align: center;
+	visibility: hidden;
+}
+div#message span, div#error_message span {
+	padding: 3px 1em;
+	font-weight: bold;
+	color: #fff;
+	background: green;
+}
+div#message span.error, div#error_message span.error {
+	background: #f00;
+}
+fieldset.common {
+	margin: 0 20px;
+	padding: 20px;
+	border: 1px solid #c3d9ff;
+}
+.cform {
+	clear: both;
+	padding: 2px 0;
+	line-height: 20px;
+}
+.cform label {
+	margin: 0 10px 0 0;
+	width: 120px;
+	float: left;
+	text-align: right;
+}
+div.container {
+	padding: 0 10px 10px;
+	/*border: 1px solid #f00;*/
+}
+ol li {
+	padding: 1ex 0;
+}
+span.question {
+	font-weight: bold;
+}
+p.answer {
+	margin: 1ex 0;
+}
+div#color_intro {
+	padding: 5px 0;
+	text-align: right;
+}
+div#color_intro span {
+	padding: 2px;
+}
+div#color_intro span.lnk {
+	color: #00f;
+	background: #c3d9ff;
+	cursor: pointer;
+}
+.odd {
+	background: #eef;
+}
+.even {
+	background: #ffe;
+}
+dl.gb {
+	border: 1px solid #9cf;
+}
+dl.gb dt {
+	padding: 3px;
+	background: #9cf;
+}
+dl.gb dt span {
+	float: right;
+}
+dl.gb dd {
+	margin: 0;
+	padding: 3px;
+	text-align: justify;
+}
+dl.gb blockquote {
+	padding: 0 0 0 3px;
+	border-left: 1px solid #9cf;
+}
+div.intro {
+	line-height: 1.3;
+}
+div.summarize {
+	padding-top: 10px;
+	float: right;
+	text-align: center;
+}
+.error {
+	font-weight: bold;
+	color: #f00;
+}
+div#user_edit {
+	display: none;
+}
+.sdel { /* self delete */
+	color: #f00;
+	font-weight: bold;
+}
+.adel { /* admin delete */
+	color: green;
+	font-weight: bold;
+}
+div#search {
+	text-align: center;
+}
+p#title {
+	margin-top: 0;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+}
+p.indent {
+	text-indent: 2em;
+}
