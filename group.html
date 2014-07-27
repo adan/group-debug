@@ -6,9 +6,41 @@
 <title>群测试工具</title>
 <link rel="stylesheet" type="text/css" href="static/common.css" />
 <script type="text/javascript" src="static/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="static/jquery.hotkeys.js"></script>
 <script type="text/javascript" src="static/jquery.selection.js"></script>
 <script type="text/javascript" src="static/common.js"></script>
 <script type="text/javascript" src="static/group.js"></script>
+<script type="text/javascript">
+function bindKeys(elem) {
+	elem.bind("keydown.alt_ctrl_c", groupCreate);
+	elem.bind("keydown.alt_ctrl_a", groupAdd);
+	elem.bind("keydown.alt_ctrl_k", groupRemove);
+	elem.bind("keydown.alt_ctrl_n", groupChangeName);
+	elem.bind("keydown.alt_ctrl_e", groupExit);
+	elem.bind("keydown.alt_ctrl_s", groupMessage);
+	elem.bind("keydown.alt_ctrl_d", groupDeleteMessage);
+	elem.bind("keydown.alt_ctrl_p", groupPush);
+	elem.bind("keydown.alt_ctrl_t", groupSave);
+	elem.bind("keydown.alt_ctrl_i", groupProfile);
+	elem.bind("keydown.alt_ctrl_u", groupSettings);
+	elem.bind("keydown.alt_ctrl_m", groupMembers);
+	elem.bind("keydown.alt_ctrl_h", groupMessages);
+	elem.bind("keydown.alt_ctrl_j", groupJoined);
+}
+function bindReturn(name, callback) {
+	var fullName = '#group [name="' + name + '"]';
+	$(fullName).bind("keydown.return", function () {callback(); return false;});
+}
+$(document).ready(function () {
+	$("#group :input").each(function () {
+		bindKeys($(this));
+	});
+	bindReturn("id", groupProfile);
+	bindReturn("name", groupChangeName);
+	bindReturn("message", groupMessage);
+	$('#group [name="id"]').focus();
+});
+</script>
 </head>
 
 <body>
@@ -40,20 +72,20 @@
     </div>
     <div class="cform" style="margin-bottom: 10px">
       <label for="submit">&nbsp;</label>
-      <input type="button" name="create" value="创建" class="btn f" onclick="groupCreate();" />
-      <input type="button" name="add" value="加人" class="btn" onclick="groupAdd();" />
-      <input type="button" name="remove" value="踢人" class="btn" onclick="groupRemove();" />
-      <input type="button" name="change_name" value="改名" class="btn" onclick="groupChangeName();" />
-      <input type="button" name="exit" value="退出" class="btn" onclick="groupExit();" />
-      <input type="button" name="message" value="发消息" class="btn" onclick="groupMessage();" />
-      <input type="button" name="delete_message" value="删消息" class="btn" onclick="groupDeleteMessage();" />
-      <input type="button" name="push" value="push" class="btn" onclick="groupPush();" />
-      <input type="button" name="save" value="保存到通讯录" class="btn" onclick="groupSave();" />
-      <input type="button" name="profile" value="资料" class="btn" onclick="groupProfile();" />
-      <input type="button" name="settings" value="设置" class="btn" onclick="groupSettings();" />
-      <input type="button" name="get_members" value="成员" class="btn" onclick="groupMembers();" />
-      <input type="button" name="messages" value="历史消息" class="btn" onclick="groupMessages();" />
-      <input type="button" name="joined" value="加入的群" class="btn" onclick="groupJoined();" />
+      <input type="button" name="create" value="建(c)" class="btn f" accesskey="c" title="创建 [ctrl-alt-c]" onclick="groupCreate();" />
+      <input type="button" name="add" value="加(a)" class="btn" accesskey="a" title="加人 [ctrl-alt-a]" onclick="groupAdd();" />
+      <input type="button" name="remove" value="踢(k)" class="btn" accesskey="k" title="踢人 [ctrl-alt-k]" onclick="groupRemove();" />
+      <input type="button" name="change_name" value="名(n)" class="btn" accesskey="n" title="改名 [ctrl-alt-n]" onclick="groupChangeName();" />
+      <input type="button" name="exit" value="退(e)" class="btn" accesskey="e" title="退出 [ctrl-alt-e]" onclick="groupExit();" />
+      <input type="button" name="message" value="发消息(s)" class="btn" accesskey="s" title="发消息 [ctrl-alt-s]" onclick="groupMessage();" />
+      <input type="button" name="delete_message" value="删消息(d)" class="btn" accesskey="d" title="删消息 [ctrl-alt-d]" onclick="groupDeleteMessage();" />
+      <input type="button" name="push" value="push" class="btn" accesskey="p" title="设置push [ctrl-alt-p]" onclick="groupPush();" />
+      <input type="button" name="save" value="保存到通讯录(t)" class="btn" accesskey="t" title="保存到通讯录 [ctrl-alt-t]" onclick="groupSave();" />
+      <input type="button" name="profile" value="资料(i)" class="btn" accesskey="i" title="资料 [ctrl-alt-i]" onclick="groupProfile();" />
+      <input type="button" name="settings" value="u" class="btn" accesskey="u" title="用户对群的设置 [ctrl-alt-u]" onclick="groupSettings();" />
+      <input type="button" name="get_members" value="成员(m)" class="btn" accesskey="m" title="成员 [ctrl-alt-m]" onclick="groupMembers();" />
+      <input type="button" name="messages" value="历史消息(h)" class="btn" accesskey="h" title="历史消息 [ctrl-alt-h]" onclick="groupMessages();" />
+      <input type="button" name="joined" value="群(j)" class="btn" accesskey="j" title="我加入的群 [ctrl-alt-j]" onclick="groupJoined();" />
       <input type="reset" name="reset" value="清空" class="btn" />
     </div>
     <div class="cform">
