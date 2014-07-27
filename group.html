@@ -11,6 +11,10 @@
 <script type="text/javascript" src="static/common.js"></script>
 <script type="text/javascript" src="static/group.js"></script>
 <script type="text/javascript">
+function toggleAuth() {
+	var auth=$("#auth");
+	auth.attr("style", "display: " + (auth.is(":visible") ? "none" : "block"));
+}
 function bindKeys(elem) {
 	elem.bind("keydown.alt_ctrl_c", groupCreate);
 	elem.bind("keydown.alt_ctrl_a", groupAdd);
@@ -86,8 +90,10 @@ $(document).ready(function () {
       <input type="button" name="get_members" value="成员(m)" class="btn" accesskey="m" title="成员 [ctrl-alt-m]" onclick="groupMembers();" />
       <input type="button" name="messages" value="历史消息(h)" class="btn" accesskey="h" title="历史消息 [ctrl-alt-h]" onclick="groupMessages();" />
       <input type="button" name="joined" value="群(j)" class="btn" accesskey="j" title="我加入的群 [ctrl-alt-j]" onclick="groupJoined();" />
+      <input type="button" name="open" value="展开(o)" class="btn" style="margin-left: 12px" accesskey="o" title="展开/关闭GDID/GSID/Access token [ctrl-alt-o]" onclick="toggleAuth();" />
       <input type="reset" name="reset" value="清空" class="btn" />
     </div>
+    <div id="auth" style="display: none">
     <div class="cform">
       <label for="gdid">GDID: </label>
       <input type="text" name="gdid" value="" size="80" class="txt" />
@@ -100,6 +106,7 @@ $(document).ready(function () {
     <div class="cform">
       <label for="token">Access token: </label>
       <input type="text" name="token" value="" size="80" class="txt" />
+    </div>
     </div>
     <div class="cform">
       <label for="note">便签：</label>
