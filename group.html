@@ -11,6 +11,9 @@
 <script type="text/javascript" src="static/common.js"></script>
 <script type="text/javascript" src="static/group.js"></script>
 <script type="text/javascript">
+function userChats() {
+	groupRequest("user/chats", {}, $("#group"));
+}
 function toggleAuth() {
 	var auth=$("#auth");
 	auth.attr("style", "display: " + (auth.is(":visible") ? "none" : "block"));
@@ -30,6 +33,7 @@ function bindKeys(elem) {
 	elem.bind("keydown.alt_ctrl_m", groupMembers);
 	elem.bind("keydown.alt_ctrl_h", groupMessages);
 	elem.bind("keydown.alt_ctrl_j", groupJoined);
+	elem.bind("keydown.alt_ctrl_l", userChats);
 }
 function bindReturn(name, callback) {
 	var fullName = '#group [name="' + name + '"]';
@@ -90,6 +94,7 @@ $(document).ready(function () {
       <input type="button" name="get_members" value="成员(m)" class="btn" accesskey="m" title="成员 [ctrl-alt-m]" onclick="groupMembers();" />
       <input type="button" name="messages" value="历史消息(h)" class="btn" accesskey="h" title="历史消息 [ctrl-alt-h]" onclick="groupMessages();" />
       <input type="button" name="joined" value="群(j)" class="btn" accesskey="j" title="我加入的群 [ctrl-alt-j]" onclick="groupJoined();" />
+      <input type="button" name="chats" value="对话(l)" class="btn" accesskey="l" title="最近对话 [ctrl-alt-l]" onclick="userChats();" />
       <input type="button" name="open" value="展开(o)" class="btn" style="margin-left: 12px" accesskey="o" title="展开/关闭GDID/GSID/Access token [ctrl-alt-o]" onclick="toggleAuth();" />
       <input type="reset" name="reset" value="清空" class="btn" />
     </div>
