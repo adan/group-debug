@@ -56,15 +56,15 @@ $(document).ready(function () {
 <fieldset>
   <legend>群</legend>
   <form id="group" method="post" onsubmit="return false;">
-    <div class="cform">
+    <div id="id_section" class="cform">
       <label for="id">群号：</label>
       <input type="text" name="id" value="" class="txt" />
     </div>
-    <div class="cform">
+    <div id="name_section" class="cform">
       <label for="name">名称：</label>
       <input type="text" name="name" value="" size="80" class="txt" />
     </div>
-    <div class="cform">
+    <div id="members_section" class="cform">
       <label for="members">成员：</label>
       <textarea name="members" cols="80" rows="3"></textarea>
       <span>英文逗号或换行分隔</span>
@@ -74,7 +74,7 @@ $(document).ready(function () {
       <input type="radio" name="onoff" value="1" checked="checked" />开
       <input type="radio" name="onoff" value="0" />关
     </div>
-    <div class="cform">
+    <div id="message_section" class="cform">
       <label for="message">消息：</label>
       <textarea name="message" cols="80" rows="2"></textarea>
     </div>

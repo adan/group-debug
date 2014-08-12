@@ -14,6 +14,13 @@ function hideMessage() {
 	$("#error_message").attr("style", "visibility:hidden");
 }
 
+function flashError(elems) {
+	elems.map(function (elem) {elem.addClass("input_error");});
+	setTimeout(function () {
+		elems.map(function (elem) {elem.removeClass("input_error");});
+	}, 500);
+}
+
 function showResult(content) {
 	$("#result").text(content);
 	$("#result_wrapper").attr("style", "visibility:visible");

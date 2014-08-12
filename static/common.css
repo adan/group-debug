@@ -123,7 +123,7 @@ div#message span, div#error_message span {
 	color: #fff;
 	background: green;
 }
-div#message span.error, div#error_message span.error {
+div.input_error, div#message span.error, div#error_message span.error {
 	background: #f00;
 }
 fieldset.common {
