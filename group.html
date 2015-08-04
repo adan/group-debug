@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>群测试工具</title>
+<link rel="stylesheet" type="text/css" href="static/common.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="static/jquery.hotkeys.js"></script>
+<script type="text/javascript" src="static/jquery.selection.js"></script>
+<script type="text/javascript" src="static/common.js"></script>
+<script type="text/javascript" src="static/group.js"></script>
+<script type="text/javascript">
+function userChats() {
+	groupRequest("user/chats", {}, $("#group"));
+}
+function toggleAuth() {
+	var auth=$("#auth");
+	auth.attr("style", "display: " + (auth.is(":visible") ? "none" : "block"));
+}
+function bindKeys(elem) {
+	elem.bind("keydown.alt_ctrl_c", groupCreate);
+	elem.bind("keydown.alt_ctrl_a", groupAdd);
+	elem.bind("keydown.alt_ctrl_k", groupRemove);
+	elem.bind("keydown.alt_ctrl_n", groupChangeName);
+	elem.bind("keydown.alt_ctrl_e", groupExit);
+	elem.bind("keydown.alt_ctrl_s", groupMessage);
+	elem.bind("keydown.alt_ctrl_d", groupDeleteMessage);
+	elem.bind("keydown.alt_ctrl_p", groupPush);
+	elem.bind("keydown.alt_ctrl_t", groupSave);
+	elem.bind("keydown.alt_ctrl_i", groupProfile);
+	elem.bind("keydown.alt_ctrl_u", groupSettings);
+	elem.bind("keydown.alt_ctrl_m", groupMembers);
+	elem.bind("keydown.alt_ctrl_h", groupMessages);
+	elem.bind("keydown.alt_ctrl_j", groupJoined);
+	elem.bind("keydown.alt_ctrl_l", userChats);
+}
+function bindReturn(name, callback) {
+	var fullName = '#group [name="' + name + '"]';
+	$(fullName).bind("keydown.return", function () {callback(); return false;});
+}
+$(document).ready(function () {
+	$("#group :input").each(function () {
+		bindKeys($(this));
+	});
+	bindReturn("id", groupProfile);
+	bindReturn("name", groupChangeName);
+	bindReturn("message", groupMessage);
+	$('#group [name="id"]').focus();
+});
+</script>
+</head>
+
+<body>
+<div id="error_message" title="单击关闭提示信息" onclick="hideMessage();"><span>&nbsp;</span></div>
+<fieldset>
+  <legend>群</legend>
+  <form id="group" method="post" onsubmit="return false;">
+    <div id="id_section" class="cform">
+      <label for="id">群号：</label>
+      <input type="text" name="id" value="" class="txt" />
+    </div>
+    <div id="name_section" class="cform">
+      <label for="name">名称：</label>
+      <input type="text" name="name" value="" size="80" class="txt" />
+    </div>
+    <div id="members_section" class="cform">
+      <label for="members">成员：</label>
+      <textarea name="members" cols="80" rows="3"></textarea>
+      <span>英文逗号或换行分隔</span>
+    </div>
+    <div class="cform">
+      <label for="onoff">push/通讯录：</label>
+      <input type="radio" name="onoff" value="1" checked="checked" />开
+      <input type="radio" name="onoff" value="0" />关
+    </div>
+    <div id="message_section" class="cform">
+      <label for="message">消息：</label>
+      <textarea name="message" cols="80" rows="2"></textarea>
+    </div>
+    <div class="cform" style="margin-bottom: 10px">
+      <label for="submit">&nbsp;</label>
+      <input type="button" name="create" value="建(c)" class="btn f" accesskey="c" title="创建 [ctrl-alt-c]" onclick="groupCreate();" />
+      <input type="button" name="add" value="加(a)" class="btn" accesskey="a" title="加人 [ctrl-alt-a]" onclick="groupAdd();" />
+      <input type="button" name="remove" value="踢(k)" class="btn" accesskey="k" title="踢人 [ctrl-alt-k]" onclick="groupRemove();" />
+      <input type="button" name="change_name" value="名(n)" class="btn" accesskey="n" title="改名 [ctrl-alt-n]" onclick="groupChangeName();" />
+      <input type="button" name="exit" value="退(e)" class="btn" accesskey="e" title="退出 [ctrl-alt-e]" onclick="groupExit();" />
+      <input type="button" name="message" value="发消息(s)" class="btn" accesskey="s" title="发消息 [ctrl-alt-s]" onclick="groupMessage();" />
+      <input type="button" name="delete_message" value="删消息(d)" class="btn" accesskey="d" title="删消息 [ctrl-alt-d]" onclick="groupDeleteMessage();" />
+      <input type="button" name="push" value="push" class="btn" accesskey="p" title="设置push [ctrl-alt-p]" onclick="groupPush();" />
+      <input type="button" name="save" value="保存到通讯录(t)" class="btn" accesskey="t" title="保存到通讯录 [ctrl-alt-t]" onclick="groupSave();" />
+      <input type="button" name="profile" value="资料(i)" class="btn" accesskey="i" title="资料 [ctrl-alt-i]" onclick="groupProfile();" />
+      <input type="button" name="settings" value="u" class="btn" accesskey="u" title="用户对群的设置 [ctrl-alt-u]" onclick="groupSettings();" />
+      <input type="button" name="get_members" value="成员(m)" class="btn" accesskey="m" title="成员 [ctrl-alt-m]" onclick="groupMembers();" />
+      <input type="button" name="messages" value="历史消息(h)" class="btn" accesskey="h" title="历史消息 [ctrl-alt-h]" onclick="groupMessages();" />
+      <input type="button" name="joined" value="群(j)" class="btn" accesskey="j" title="我加入的群 [ctrl-alt-j]" onclick="groupJoined();" />
+      <input type="button" name="chats" value="对话(l)" class="btn" accesskey="l" title="最近对话 [ctrl-alt-l]" onclick="userChats();" />
+      <input type="button" name="open" value="展开(o)" class="btn" style="margin-left: 12px" accesskey="o" title="展开/关闭GDID/GSID/Access token [ctrl-alt-o]" onclick="toggleAuth();" />
+      <input type="reset" name="reset" value="清空" class="btn" />
+    </div>
+    <div id="auth" style="display: none">
+    <div class="cform">
+      <label for="gdid">GDID: </label>
+      <input type="text" name="gdid" value="" size="80" class="txt" />
+      <span>填写GDID/GSID/Access token可改变操作者身份</span>
+    </div>
+    <div class="cform">
+      <label for="gsid">GSID: </label>
+      <input type="text" name="gsid" value="" size="80" class="txt" />
+    </div>
+    <div class="cform">
+      <label for="token">Access token: </label>
+      <input type="text" name="token" value="" size="80" class="txt" />
+    </div>
+    </div>
+    <div class="cform">
+      <label for="note">便签：</label>
+      <textarea name="note" cols="80" rows="3"></textarea>
+      <span>此处内容不提交服务器，用于临时存储</span>
+    </div>
+  </form>
+</fieldset>
+<div id="result_wrapper" style="visibility: hidden">
+  <span>服务器返回结果：</span>
+  <pre id="result" style="margin-top: 0"></pre>
+</div>
+</body>
+</html>
